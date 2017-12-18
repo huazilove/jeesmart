@@ -17,5 +17,6 @@
         <module>jeesmart-common-dao</module>
         <module>jeesmart-common-model</module>
         <module>jeesmart-common-utils</module>
+        <module>jeesmart-common-exception</module>
     </modules>
 </project>

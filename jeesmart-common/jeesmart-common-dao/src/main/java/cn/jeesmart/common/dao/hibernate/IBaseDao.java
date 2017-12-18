@@ -9,12 +9,12 @@ import java.util.List;
  * @author wjh
  * @create 2017/12/15
  */
- interface IBaseDao<T>
+public interface IBaseDao<T>
 {
 
 	/**
 	 * 根据属性查找对象
-	 * 
+	 *
 	 * @param propertyName
 	 *            属性（对应Bean）
 	 * @param value
@@ -25,7 +25,7 @@ import java.util.List;
 
 	/**
 	 * 根据实体查找对象
-	 * 
+	 *
 	 * @param entiey
 	 *            实体（T类型）
 	 * @return 根据属性查找对象
@@ -40,7 +40,7 @@ import java.util.List;
 
 	/**
 	 * 保存实体
-	 * 
+	 *
 	 * @param entity
 	 *            实体id
 	 */
@@ -48,7 +48,7 @@ import java.util.List;
 
 	/**
 	 * 更新实体
-	 * 
+	 *
 	 * @param entity
 	 *            实体id
 	 */
@@ -117,7 +117,7 @@ import java.util.List;
 
 	/**
 	 * 获取所有对象
-	 * 
+	 *
 	 * @return 所有对象
 	 */
 	 QueryResult<T> getScrollData();

@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.jeesmart</groupId>
     <artifactId>jeesmart-parent</artifactId>
-    <version>${projectVersion}</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>为所有项目的父项目，主要用来管理所有项目使用的jar包及其版本</description>
@@ -12,6 +12,7 @@
 
     <modules>
         <module>../jeesmart-common</module>
+        <module>../jeesmart-demo</module>
     </modules>
 
     <profiles>
@@ -42,15 +43,15 @@
     </profiles>
 
     <properties>
-        <!--项目版本号-->
-        <projectVersion>1.0-SNAPSHOT</projectVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <server.port>80</server.port>
         <junit.version>4.12</junit.version>
-        <spring.version>4.3.1.RELEASE</spring.version>
+        <spring.version>4.2.1.RELEASE</spring.version>
         <validator.version>5.1.1.Final</validator.version>
-        <hibernate.version>5.1.1.Final</hibernate.version>
+        <hibernate.version>3.6.9.Final</hibernate.version>
+        <javassist.version>3.12.1.GA</javassist.version>
+        <ehcache.version>2.9.0</ehcache.version>
         <spring-redis.version>1.2.2.RELEASE</spring-redis.version>
         <aspectj.version>1.8.9</aspectj.version>
         <jta.version>1.1</jta.version>
@@ -184,6 +185,11 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-asm</artifactId>
+                <version>3.1.4.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -430,7 +436,7 @@
                 <artifactId>cxf-rt-transports-http-jetty</artifactId>
                 <version>${cxf.version}</version>
             </dependency>
-            <!--hibernate-->
+            <!-- Hibernate -->
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
@@ -440,6 +446,18 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <version>${ehcache.version}</version>
+            </dependency>
+            <!-- hibernate end -->
+            <!-- 读取字节码包 -->
+            <dependency>
+                <groupId>javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${javassist.version}</version>
             </dependency>
             <!-- GENERAL UTILS begin -->
             <dependency>
