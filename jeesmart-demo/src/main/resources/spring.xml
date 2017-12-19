@@ -22,6 +22,8 @@
 	<import resource="classpath:spring-jdbc.xml" />
 	<!-- 引入mybatis基础配置 -->
 	<import resource="classpath:spring-mybatis.xml" />
-	<!-- 引入mybatis基础配置 -->
+	<!-- 引入hibernate基础配置 -->
 	<import resource="classpath:spring-hibernate.xml" />
+	<!-- 引入redis基础配置 -->
+	<import resource="classpath:spring-redis.xml" />
 </beans>

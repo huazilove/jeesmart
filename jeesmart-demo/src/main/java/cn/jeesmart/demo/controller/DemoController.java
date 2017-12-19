@@ -1,4 +1,5 @@
 package cn.jeesmart.demo.controller;
+import cn.jeesmart.common.redis.RedisCache;
 import cn.jeesmart.demo.entity.Student;
 import cn.jeesmart.demo.entity.Teacher;
 import cn.jeesmart.demo.service.IStudentService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -26,6 +28,8 @@ public class DemoController{
     private IStudentService studentService;
     @Autowired
     private ITeacherService teacherService;
+    @Resource
+    private RedisCache redisCache;
 
 
 
@@ -53,6 +57,7 @@ public class DemoController{
     ){
         Teacher teacher = new Teacher(1,"test","男","讲师");
         teacherService.saveOrUpdate(teacher);
+        redisCache.set("test",positional);
         List list  = teacherService.findByPositional(positional);
         return list;
     }
