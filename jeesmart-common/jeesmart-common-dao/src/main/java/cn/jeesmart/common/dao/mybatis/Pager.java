@@ -8,9 +8,14 @@ import java.util.List;
  * @param <T>
  */
 public class Pager<T> {
-	// 总数
+	/**
+	 * 总数
+	 */
 	private int totalNum;
-	// 每页显示的具体内容
+	/**
+	 * 每页显示的具体内容
+	 *
+	 */
 	private List<T> pageList;
 
 	public int getTotalNum() {

@@ -213,7 +213,7 @@ public abstract class BaseDaoSupport<T> extends HibernateDaoSupport implements I
                 Method method = propertydesc.getReadMethod();
                 if (method != null && method.isAnnotationPresent(EmbeddedId.class)) {
                     PropertyDescriptor[] ps = Introspector.getBeanInfo(propertydesc.getPropertyType()).getPropertyDescriptors();
-                    out = "o." + propertydesc.getName() + "." + (!ps[1].getName().equals("class") ? ps[1].getName() : ps[0].getName());
+                    out = "o." + propertydesc.getName() + "." + (!"class".equals(ps[1].getName())? ps[1].getName() : ps[0].getName());
                     break;
                 }
             }
