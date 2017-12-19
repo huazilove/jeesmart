@@ -44,6 +44,15 @@ public class Teacher implements java.io.Serializable
 		this.positional = positional;
 	}
 
+	/** full constructor */
+	public Teacher(Integer id,String name, String sex, String positional)
+	{
+		this.id = id;
+		this.name = name;
+		this.sex = sex;
+		this.positional = positional;
+	}
+
 	// Property accessors
 	@Id
 	@GeneratedValue

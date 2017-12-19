@@ -1,5 +1,6 @@
 package cn.jeesmart.demo.controller;
 import cn.jeesmart.demo.entity.Student;
+import cn.jeesmart.demo.entity.Teacher;
 import cn.jeesmart.demo.service.IStudentService;
 import cn.jeesmart.demo.service.ITeacherService;
 import io.swagger.annotations.Api;
@@ -50,6 +51,8 @@ public class DemoController{
     public List findByPositional(
             @ApiParam(value = "职称")  @RequestParam("positional") String positional
     ){
+        Teacher teacher = new Teacher(1,"test","男","讲师");
+        teacherService.saveOrUpdate(teacher);
         List list  = teacherService.findByPositional(positional);
         return list;
     }
