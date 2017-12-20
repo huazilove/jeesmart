@@ -1,6 +1,7 @@
 package cn.jeesmart.common.dao.mybatis;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,10 @@ public class IdaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport
 		getSqlSession().update(entity.getClass().getName() + ".update", entity);
 	}
 	@Override
+	public int batchUpdate(Class<T> entityClass,List<T> dataList) {
+		return getSqlSession().update(entityClass.getName() + ".batchUpdate", dataList);
+	}
+	@Override
 	public T findById(Class<T> entityClass, Serializable pk) {
 		return getSqlSession().selectOne(entityClass.getName() + ".findById",
 				pk);
@@ -39,6 +44,12 @@ public class IdaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport
 	public void save(T entity) {
 		getSqlSession().insert(entity.getClass().getName() + ".add", entity);
 	}
+
+	@Override
+	public int batchSave(Class<T> entityClass,List<T> dataList) {
+		return  getSqlSession().insert(entityClass.getName() + ".batchAdd", dataList);
+	}
+
 	@Override
 	public Pager<T> findByPage(Class<T> entityClass, int pageNo, int pageSize) {
 		return findByPage(entityClass, pageNo, pageSize, null);

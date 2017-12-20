@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	       http://www.springframework.org/schema/beans/spring-beans.xsd
+	       http://www.springframework.org/schema/context
+	       http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:annotation-config />
+	<!-- 自动扫描(自动注入) -->
+	<context:component-scan base-package="cn.jeesmart.sso.server.service" />
+	<!-- 属性文件位置 -->
+	<bean id="annotationPropertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<!--数据库参数配置 -->
+				<value>classpath:jdbc.properties</value>
+				<!--Dubbo参数配置 -->
+				<value>classpath:dubbo.properties</value>
+				<!--服务参数配置 -->
+				<value>classpath:service.properties</value>
+				<!--单点登录参数配置 -->
+				<value>classpath:sso.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- SSO令牌管理LocalTokenManager -->
+	<bean id="tokenManager" class="cn.jeesmart.sso.server.common.RedisTokenManager">
+		<property name="tokenTimeout" value="${sso.timeout}" />
+	</bean>
+	<!-- 引入jdbc基础配置 -->
+	<import resource="classpath:spring-jdbc.xml" />
+	<!-- 引入mybatis基础配置 -->
+	<import resource="classpath:spring-mybatis.xml" />
+	<!-- 引入hibernate基础配置 -->
+	<import resource="classpath:spring-hibernate.xml" />
+	<!--redis : 用于部署多JVM实例时，RedisSession覆盖HttpSession实现Session共享-->
+	<import resource="classpath:spring-redis-sso.xml" />
+	<!--activeMQ : 用于权限有修改时，异步通知应用更新权限-->
+	<import resource="classpath:spring-mq-sso.xml" />
+	<!-- 引入Dubbo服务相关-->
+	<import resource="dubbo-provider.xml" />
+</beans>

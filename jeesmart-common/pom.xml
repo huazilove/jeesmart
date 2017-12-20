@@ -19,5 +19,7 @@
         <module>jeesmart-common-utils</module>
         <module>jeesmart-common-exception</module>
         <module>jeesmart-common-redis</module>
+        <module>jeesmart-common-web</module>
+        <module>jeesmart-common-mq</module>
     </modules>
 </project>

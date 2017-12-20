@@ -97,4 +97,19 @@ import java.util.Map;
     * @return
     */
     List<T> findAllByKey(Class<T> entityClass, Map<String, Object> maps, String operate);
+
+    /**
+     * 批量保存
+     * @param entityClass
+     * @param dataList
+     * @return
+     */
+     int batchSave(Class<T> entityClass,List<T> dataList);
+    /**
+     * 批量保存
+     * @param entityClass
+     * @param dataList
+     * @return
+     */
+     int batchUpdate(Class<T> entityClass,List<T> dataList);
 }

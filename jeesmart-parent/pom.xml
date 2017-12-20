@@ -13,6 +13,7 @@
     <modules>
         <module>../jeesmart-common</module>
         <module>../jeesmart-demo</module>
+        <module>../jeesmart-sso</module>
     </modules>
 
     <profiles>

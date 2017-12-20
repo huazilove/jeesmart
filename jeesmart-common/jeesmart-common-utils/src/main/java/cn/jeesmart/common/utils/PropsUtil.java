@@ -67,7 +67,9 @@ public final class PropsUtil {
         return getInt(props, key, 0);
     }
 
-    // 获取数值型属性（可指定默认值）
+    /**
+     * 获取数值型属性（可指定默认值）
+     */
     public static int getInt(Properties props, String key, int defaultValue) {
         int value = defaultValue;
         if (props.containsKey(key)) {

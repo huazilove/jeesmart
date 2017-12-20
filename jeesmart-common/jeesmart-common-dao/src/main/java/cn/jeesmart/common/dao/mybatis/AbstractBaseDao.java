@@ -1,12 +1,16 @@
 package cn.jeesmart.common.dao.mybatis;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import cn.jeesmart.common.exception.DaoException;
 import cn.jeesmart.common.utils.GenericsUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * DAO层封装接口，包含常用的CURD和分页操作
@@ -17,6 +21,7 @@ import cn.jeesmart.common.utils.GenericsUtils;
  */
 public abstract class AbstractBaseDao<T, PK extends Serializable> implements
 		BaseDao<T, PK> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractBaseDao.class);
 	Class entityClass = GenericsUtils.getSuperClassGenricType(this.getClass());
 	@Resource
 	private Idao<T, Serializable> idao;
@@ -27,6 +32,11 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements
 	}
 
 	@Override
+	public void batchSave(List<T> dataList) {
+		verifyRows(idao.batchSave(entityClass,dataList), dataList.size(), "数据库批量新增失败");
+	}
+
+	@Override
 	public void delete(PK pk) {
 		idao.delete(entityClass, pk);
 	}
@@ -34,6 +44,10 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements
 	@Override
 	public void update(T entity) {
 		idao.update(entity);
+	}
+	@Override
+	public void batchUpdate(List<T> dataList) {
+		verifyRows(idao.batchUpdate(entityClass,dataList), dataList.size(), "数据库批量修改失败");
 	}
 
 	@Override
@@ -83,5 +97,19 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements
 	@Override
 	public List<T> findAllByKey(Map<String, Object> maps,String operate) {
 		return idao.findAllByKey(entityClass, maps, operate);
+	}
+	/**
+	 * 为高并发环境出现的更新和删除操作，验证更新数据库记录条数
+	 *
+	 * @param updateRows
+	 * @param rows
+	 * @param message
+	 */
+	protected void verifyRows(int updateRows, int rows, String message) {
+		if (updateRows != rows) {
+			DaoException e = new DaoException(message);
+			LOGGER.error("need update is {}, but real update rows is {}.", rows, updateRows, e);
+			throw e;
+		}
 	}
 }

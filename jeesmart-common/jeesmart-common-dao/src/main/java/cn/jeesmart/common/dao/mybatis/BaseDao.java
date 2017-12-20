@@ -1,6 +1,7 @@
 package cn.jeesmart.common.dao.mybatis;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 /**
@@ -90,5 +91,17 @@ public interface BaseDao<T,PK extends Serializable> {
     * @return
     */
     List<T> findAllByKey(Map<String, Object> maps, String operate);
-   
+
+    /**
+     * 批量保存
+     * @param dataList
+     * @return
+     */
+     void batchSave(List<T> dataList);
+    /**
+     * 批量保存
+     * @param dataList
+     * @return
+     */
+     void batchUpdate(List<T> dataList);
 }

@@ -41,7 +41,7 @@
         </dependency>
         <dependency>
             <groupId>cn.jeesmart</groupId>
-            <artifactId>jeesmart-common-utils</artifactId>
+            <artifactId>jeesmart-common-exception</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>

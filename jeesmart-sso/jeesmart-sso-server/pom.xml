@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jeesmart-sso</artifactId>
+        <groupId>cn.jeesmart</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>jeesmart-sso-server</artifactId>
+    <packaging>war</packaging>
+    <description>单点登录服务端</description>
+    <inceptionYear>2017</inceptionYear>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <server.port>8080</server.port>
+    </properties>
+    <dependencies>
+        <!-- J2EE支持 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- 通用CRUD DAO -->
+        <dependency>
+            <groupId>cn.jeesmart</groupId>
+            <artifactId>jeesmart-common-dao</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <!-- 通用model -->
+        <dependency>
+            <groupId>cn.jeesmart</groupId>
+            <artifactId>jeesmart-common-model</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <!-- 通用web -->
+        <dependency>
+            <groupId>cn.jeesmart</groupId>
+            <artifactId>jeesmart-common-web</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <!-- sso单点登录客户端 -->
+        <dependency>
+            <groupId>cn.jeesmart</groupId>
+            <artifactId>jeesmart-sso-client</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <!-- Springfox API文档 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.3.0.Final</version>
+        </dependency>
+        <!-- dubbo -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Netty -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-transport</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-handler</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-codec-http</artifactId>
+        </dependency>
+
+        <!-- Jstl支持-->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+    </dependencies>
+</project>
