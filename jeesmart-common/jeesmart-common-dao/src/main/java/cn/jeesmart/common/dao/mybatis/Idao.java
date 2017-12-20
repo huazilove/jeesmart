@@ -106,7 +106,7 @@ import java.util.Map;
      */
      int batchSave(Class<T> entityClass,List<T> dataList);
     /**
-     * 批量保存
+     * 批量修改
      * @param entityClass
      * @param dataList
      * @return

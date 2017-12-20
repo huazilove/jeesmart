@@ -34,7 +34,7 @@
 	<mvc:view-controller path="/" view-name="redirect:swagger-ui.html" />
 
 	<!-- Swagger文档 -->
-	<bean id="swagger2Config" class="cn.jeesmart.demo.config.SwaggerConfig" />
+	<bean id="swagger2Config" class="cn.jeesmart.sso.server.common.SwaggerConfig" />
 	<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
 	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
 </beans>

@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:task="http://www.springframework.org/schema/task"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 	       http://www.springframework.org/schema/beans/spring-beans.xsd
 	       http://www.springframework.org/schema/context
-	       http://www.springframework.org/schema/context/spring-context.xsd">
+	       http://www.springframework.org/schema/context/spring-context.xsd
+	       http://www.springframework.org/schema/aop
+	       http://www.springframework.org/schema/aop/spring-aop.xsd
+	       http://www.springframework.org/schema/task
+	       http://www.springframework.org/schema/task/spring-task.xsd">
 	<context:annotation-config />
+	<aop:aspectj-autoproxy />
 	<!-- 自动扫描(自动注入) -->
 	<context:component-scan base-package="cn.jeesmart.sso.server.service" />
-	<!-- 属性文件位置 -->
-	<bean id="annotationPropertyConfigurer"
-		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean class="cn.jeesmart.common.utils.config.ConfigUtils">
+		<property name="fileEncoding" value="UTF-8" />
 		<property name="locations">
 			<list>
 				<!--数据库参数配置 -->
@@ -22,6 +28,12 @@
 				<value>classpath:service.properties</value>
 				<!--单点登录参数配置 -->
 				<value>classpath:sso.properties</value>
+				<!--redis参数配置 -->
+				<value>classpath:redis.properties</value>
+				<!--activeMq参数配置 -->
+				<value>classpath:mq.properties</value>
+				<!--单点登录系统公共参数配置 -->
+				<value>classpath:config.properties</value>
 			</list>
 		</property>
 	</bean>

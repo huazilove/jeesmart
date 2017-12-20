@@ -42,14 +42,23 @@
 		</if>
 	</update>
 	
-	<select id="findPaginationByName" parameterType="Map" resultType="cn.jeesmart.sso.server.model.App">
+	<select id="findByKey" parameterType="Map" resultType="cn.jeesmart.sso.server.model.App">
 		SELECT * 
      	FROM SYS_APP a
      	WHERE 1 = 1
      	<if test="name != null and name != '' ">
 			AND a.name like CONCAT('%',#{name},'%')
 		</if>
-     	ORDER BY a.sort DESC, a.createTime DESC 
+     	ORDER BY a.sort DESC, a.createTime DESC
+		limit #{pageNo},#{pageSize}
+	</select>
+
+	<!-- 总数 -->
+	<select id="findByKeyTotal" resultType="int" parameterType="map">
+		select count(1) from SYS_APP a  where 1=1
+		<if test="name != null and name != '' ">
+			AND a.name like CONCAT('%',#{name},'%')
+		</if>
 	</select>
 	
 	<select id="findByCode" parameterType="Map" resultType="cn.jeesmart.sso.server.model.App">
