@@ -84,7 +84,7 @@ public class LoginController extends BaseController {
 			request.setAttribute("errorMessage", "验证码不正确");
 			return goLoginPath(backUrl, appCode, request);
 		}
-		Map<String,Object> map = null;//userService.login(getIpAddr(request), appCode, account, PasswordProvider.encrypt(password));
+		Map<String,Object> map = userService.login(getIpAddr(request), appCode, account, PasswordProvider.encrypt(password));
 		if (!ReturnCode.SUCCESS.equals(map.get(Message.RETURN_FIELD_CODE))) {
 			request.setAttribute("errorMessage", map.get(Message.RETURN_FIELD_ERROR));
 			return goLoginPath(backUrl, appCode, request);

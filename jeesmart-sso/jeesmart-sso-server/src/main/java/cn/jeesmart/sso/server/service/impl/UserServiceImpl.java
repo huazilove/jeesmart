@@ -21,7 +21,7 @@ import java.util.Set;
  */
 @Service("userService")
 public class UserServiceImpl extends AbstractBaseDao<User, String> implements UserService {
-    /*@Resource
+    @Resource
     private UserService userService;
     @Resource
     private AppService appService;
@@ -41,7 +41,9 @@ public class UserServiceImpl extends AbstractBaseDao<User, String> implements Us
             map.put(Message.RETURN_FIELD_ERROR,"已被管理员禁用");
         }
         else {
-            Set<String> set = null;//appService.findAppCodeByUserId(TrueFalseEnum.TRUE.getValue(), user.getId());
+            param.put("userId",user.getId());
+            param.put("isEnable",TrueFalseEnum.TRUE.getValue());
+            Set<String> set = appService.findAllByKey(param,".findAppCodeByUserId");
             if (CollectionUtils.isEmpty(set)) {
                 map.put(Message.RETURN_FIELD_CODE,ReturnCode.ERROR);
                 map.put(Message.RETURN_FIELD_ERROR,"不存在可操作应用");
@@ -59,5 +61,5 @@ public class UserServiceImpl extends AbstractBaseDao<User, String> implements Us
             }
         }
         return map;
-    }*/
+    }
 }

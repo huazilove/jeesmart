@@ -11,5 +11,13 @@ import java.util.Map;
  * @author Joe
  */
 public interface UserService extends BaseDao<User, String> {
-
+    /**
+     * 登录
+     * @param ip
+     * @param appCode
+     * @param account
+     * @param password
+     * @return
+     */
+    public Map<String,Object> login(String ip, String appCode, String account, String password);
 }
