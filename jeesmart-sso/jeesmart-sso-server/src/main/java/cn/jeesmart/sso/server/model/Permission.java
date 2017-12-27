@@ -1,6 +1,6 @@
 package cn.jeesmart.sso.server.model;
 
-import cn.jeesmart.common.model.PersistentObject;
+import cn.jeesmart.common.model.DataEntity;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
@@ -8,14 +8,14 @@ import com.alibaba.fastjson.annotation.JSONField;
  * 
  * @author Joe
  */
-public class Permission extends PersistentObject {
+public class Permission extends DataEntity {
 
 	private static final long serialVersionUID = 4368792338865943489L;
 
 	/** 应用ID */
-	private Integer appId;
+	private String appId;
 	/** 父ID */
-	private Integer parentId;
+	private String parentId;
 	/** 图标 */
 	@JSONField(serialize = false)
 	private String icon;
@@ -28,22 +28,20 @@ public class Permission extends PersistentObject {
 	private Integer sort = Integer.valueOf(1);
 	/** 是否菜单 */
 	private Boolean isMenu;
-	/** 是否启用 */
-	private Boolean isEnable;
 	
-	public Integer getAppId() {
+	public String getAppId() {
 		return this.appId;
 	}
 
-	public void setAppId(Integer appId) {
+	public void setAppId(String appId) {
 		this.appId = appId;
 	}
 
-	public Integer getParentId() {
+	public String getParentId() {
 		return this.parentId;
 	}
 
-	public void setParentId(Integer parentId) {
+	public void setParentId(String parentId) {
 		this.parentId = parentId;
 	}
 	
@@ -87,14 +85,6 @@ public class Permission extends PersistentObject {
 		this.isMenu = isMenu;
 	}
 
-	public Boolean getIsEnable() {
-		return this.isEnable;
-	}
-
-	public void setIsEnable(Boolean isEnable) {
-		this.isEnable = isEnable;
-	}
-	
 	public String getUrlStr() {
 		return url;
 	}
@@ -103,7 +93,7 @@ public class Permission extends PersistentObject {
 		return icon;
 	}
 
-	public Integer getpId() {
+	public String getpId() {
 		return this.parentId;
 	}
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import cn.jeesmart.common.exception.CacheException;
+import cn.jeesmart.common.exception.SystemException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.HashOperations;
@@ -37,7 +37,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("get key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 
 	}
@@ -50,7 +50,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("set key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 	}
 
@@ -62,7 +62,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("set key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 	}
 
@@ -73,7 +73,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("delete key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 	}
 
@@ -90,7 +90,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("setSet key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 	}
 
@@ -111,7 +111,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("setSet key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 	}
 
@@ -128,7 +128,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("getSet key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 	}
 
@@ -144,7 +144,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("setList key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 	}
 
@@ -160,7 +160,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("setList key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 	}
 
@@ -177,7 +177,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("getList key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 	}
 
@@ -190,7 +190,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("getListSize key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 	}
 
@@ -202,7 +202,7 @@ public class RedisCache<T> {
 		}
 		catch (Throwable t) {
 			LOGGER.error("getListSize key [{}] exception!", key, t);
-			throw new CacheException(t);
+			throw new SystemException(t);
 		}
 	}
 

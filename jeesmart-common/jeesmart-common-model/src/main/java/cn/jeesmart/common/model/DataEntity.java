@@ -3,7 +3,9 @@ package cn.jeesmart.common.model;
 import java.util.Date;
 
 
+import cn.jeesmart.common.model.enums.TrueFalseEnum;
 import cn.jeesmart.common.utils.RandomHelper;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
@@ -24,17 +26,23 @@ public abstract class DataEntity extends BaseEntity {
     public static final String DEL_FLAG_DELETE = "1";
 
     /**
-     * 创建日期
+     * 创建时间
      */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
     /**
      * 更新日期
      */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date updateDate;
     /**
      * 删除标记(0:正常;1:删除;)
      */
     private String delFlag;
+    /**
+     * 是否启用
+     */
+    private Boolean isEnable = Boolean.valueOf(true);
 
     public DataEntity() {
         super();
@@ -90,6 +98,18 @@ public abstract class DataEntity extends BaseEntity {
 
     public void setDelFlag(String delFlag) {
         this.delFlag = delFlag;
+    }
+
+    public Boolean getIsEnable() {
+        return this.isEnable;
+    }
+
+    public void setIsEnable(Boolean isEnable) {
+        this.isEnable = isEnable;
+    }
+
+    public String getIsEnableStr() {
+        return (isEnable != null && isEnable) ? TrueFalseEnum.TRUE.getLabel() : TrueFalseEnum.FALSE.getLabel();
     }
 
 }

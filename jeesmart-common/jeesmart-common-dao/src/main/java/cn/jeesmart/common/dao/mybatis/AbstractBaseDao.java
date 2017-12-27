@@ -1,13 +1,11 @@
 package cn.jeesmart.common.dao.mybatis;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-
-import cn.jeesmart.common.exception.DaoException;
+import cn.jeesmart.common.exception.SystemException;
 import cn.jeesmart.common.utils.GenericsUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -107,7 +105,7 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements
 	 */
 	protected void verifyRows(int updateRows, int rows, String message) {
 		if (updateRows != rows) {
-			DaoException e = new DaoException(message);
+			SystemException e = new SystemException(message);
 			LOGGER.error("need update is {}, but real update rows is {}.", rows, updateRows, e);
 			throw e;
 		}

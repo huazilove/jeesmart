@@ -1,43 +1,43 @@
 package cn.jeesmart.sso.server.model;
-import cn.jeesmart.common.model.PersistentObject;
+import cn.jeesmart.common.model.DataEntity;
 
 /**
  * 管理员角色映射
  * 
  * @author Joe
  */
-public class UserRole extends PersistentObject {
+public class UserRole extends DataEntity {
 
 	private static final long serialVersionUID = 4942358338145288018L;
 
 	/** 应用ID */
-	private Integer appId;
+	private String appId;
 	/** 管理员ID */
-	private Integer userId;
+	private String userId;
 	/** 角色ID */
-	private Integer roleId;
+	private String roleId;
 	
-	public Integer getAppId() {
+	public String getAppId() {
 		return this.appId;
 	}
 
-	public void setAppId(Integer appId) {
+	public void setAppId(String appId) {
 		this.appId = appId;
 	}
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
-	public Integer getRoleId() {
+	public String getRoleId() {
 		return this.roleId;
 	}
 
-	public void setRoleId(Integer roleId) {
+	public void setRoleId(String roleId) {
 		this.roleId = roleId;
 	}
 }

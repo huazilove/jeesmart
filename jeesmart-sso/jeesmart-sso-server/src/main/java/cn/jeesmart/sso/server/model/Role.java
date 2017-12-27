@@ -1,31 +1,28 @@
 package cn.jeesmart.sso.server.model;
-import cn.jeesmart.common.model.PersistentObject;
-import cn.jeesmart.common.model.enums.TrueFalseEnum;
+import cn.jeesmart.common.model.DataEntity;
 /**
  * 角色
  * 
  * @author Joe
  */
-public class Role extends PersistentObject {
+public class Role extends DataEntity {
 
 	private static final long serialVersionUID = 564115576254799088L;
 
 	/** 应用ID */
-	private Integer appId;
+	private String appId;
 	/** 名称 */
 	private String name;
 	/** 排序 */
 	private Integer sort = Integer.valueOf(1);
 	/** 描述 */
 	private String description;
-	/** 是否启用 */
-	private Boolean isEnable = Boolean.valueOf(true);
 
-	public Integer getAppId() {
+	public String getAppId() {
 		return this.appId;
 	}
 
-	public void setAppId(Integer appId) {
+	public void setAppId(String appId) {
 		this.appId = appId;
 	}
 
@@ -52,14 +49,6 @@ public class Role extends PersistentObject {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public Boolean getIsEnable() {
-		return this.isEnable;
-	}
-
-	public void setIsEnable(Boolean isEnable) {
-		this.isEnable = isEnable;
-	}
 	
 	/** 以下为显示辅助参数 */
 	private Boolean isChecked = Boolean.valueOf(false);
@@ -70,9 +59,5 @@ public class Role extends PersistentObject {
 
 	public void setIsChecked(Boolean isChecked) {
 		this.isChecked = isChecked;
-	}
-	
-	public String getIsEnableStr() {
-		return (isEnable != null && isEnable) ? TrueFalseEnum.TRUE.getLabel() : TrueFalseEnum.FALSE.getLabel();
 	}
 }

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import cn.jeesmart.common.utils.StringUtils;
+import cn.jeesmart.common.utils.StringHelper;
 import cn.jeesmart.sso.rpc.AuthenticationRpcService;
 import cn.jeesmart.sso.rpc.RpcPermission;
 import org.slf4j.Logger;
@@ -53,7 +53,7 @@ public class ApplicationPermissionUtils {
 				if (menu.getIsMenu()) {
 					applicationMenuList.add(menu);
 				}
-				if (StringUtils.isNotBlank(menu.getUrl())) {
+				if (StringHelper.isNotBlank(menu.getUrl())) {
 					applicationPermissionSet.add(menu.getUrl());
 				}
 			}

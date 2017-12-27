@@ -161,7 +161,7 @@ public class DateHelper extends DateUtils {
      * @return long long
      */
     public static long pastDays(Date date) {
-        long t = System.currentTimeMillis() - date.getTime();
+        long t = new Date().getTime() - date.getTime();
         return t / (24 * 60 * 60 * 1000);
     }
 
@@ -172,7 +172,7 @@ public class DateHelper extends DateUtils {
      * @return long long
      */
     public static long pastHour(Date date) {
-        long t = System.currentTimeMillis() - date.getTime();
+        long t = new Date().getTime() - date.getTime();
         return t / (60 * 60 * 1000);
     }
 
@@ -183,7 +183,7 @@ public class DateHelper extends DateUtils {
      * @return long long
      */
     public static long pastMinutes(Date date) {
-        long t = System.currentTimeMillis() - date.getTime();
+        long t = new Date().getTime() - date.getTime();
         return t / (60 * 1000);
     }
 

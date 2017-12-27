@@ -3,14 +3,15 @@ package cn.jeesmart.sso.client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-
-import cn.jeesmart.common.constants.Result;
-import cn.jeesmart.common.exception.ServiceException;
+import cn.jeesmart.common.constants.Message;
+import cn.jeesmart.common.exception.SystemException;
 import cn.jeesmart.common.utils.PropsUtil;
 import cn.jeesmart.common.utils.SpringUtils;
-import cn.jeesmart.common.utils.StringUtils;
+import cn.jeesmart.common.utils.StringHelper;
 import cn.jeesmart.sso.rpc.AuthenticationRpcService;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.AntPathMatcher;
@@ -54,10 +55,10 @@ public abstract class ClientFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		if (StringUtils.isBlank(ssoServerUrl = PropsUtil.loadProps(FILE_NAME).getProperty(SSO_SERVER_URL))) {
+		if (StringHelper.isBlank(ssoServerUrl = PropsUtil.loadProps(FILE_NAME).getProperty(SSO_SERVER_URL))) {
 			throw new IllegalArgumentException("ssoServerUrl不能为空");
 		}
-		if (StringUtils.isBlank(ssoAppCode =PropsUtil.loadProps(FILE_NAME).getProperty(SSO_APP_CODE))) {
+		if (StringHelper.isBlank(ssoAppCode =PropsUtil.loadProps(FILE_NAME).getProperty(SSO_APP_CODE))) {
 			throw new IllegalArgumentException("ssoAppCode不能为空");
 		}
 		if ((authenticationRpcService = SpringUtils.getBean(AuthenticationRpcService.class)) == null) {
@@ -65,7 +66,7 @@ public abstract class ClientFilter implements Filter {
 		}
 		
 		String excludes = filterConfig.getInitParameter("excludes");
-		if (StringUtils.isNotBlank(excludes)) {
+		if (StringHelper.isNotBlank(excludes)) {
 			excludeList = Arrays.asList(excludes.split(","));
 			pathMatcher = new AntPathMatcher();
 		}
@@ -82,11 +83,14 @@ public abstract class ClientFilter implements Filter {
 			try {
 				doFilter(httpRequest, httpResponse, chain);
 			}
-			catch (ServiceException e) {
+			catch (SystemException e) {
 				httpResponse.setContentType("application/json;charset=UTF-8");
 				httpResponse.setStatus(HttpStatus.OK.value());
 				PrintWriter writer = httpResponse.getWriter();
-				writer.write(JSON.toJSONString(Result.create(e.getCode()).setMessage(e.getMessage())));
+				Map<String,Object> map = new HashMap<>();
+				map.put(Message.RETURN_FIELD_CODE,e.getCode());
+				map.put(Message.RETURN_FIELD_ERROR,e.getMessage());
+				writer.write(JSON.toJSONString(map));
 				writer.flush();
 				writer.close();
 			}
@@ -111,10 +115,10 @@ public abstract class ClientFilter implements Filter {
 	 * @param chain
 	 * @throws IOException
 	 * @throws ServletException
-	 * @throws ServiceException
+	 * @throws SystemException
 	 */
 	public abstract void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-			throws IOException, ServletException, ServiceException;
+			throws IOException, ServletException, SystemException;
 
 	@Override
 	public void destroy() {

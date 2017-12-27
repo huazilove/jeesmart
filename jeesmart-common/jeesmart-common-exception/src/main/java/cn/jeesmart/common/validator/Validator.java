@@ -1,8 +1,8 @@
 package cn.jeesmart.common.validator;
 
 
-import cn.jeesmart.common.exception.ValidateException;
-import cn.jeesmart.common.utils.StringUtils;
+import cn.jeesmart.common.exception.SystemException;
+import cn.jeesmart.common.utils.StringHelper;
 import cn.jeesmart.common.utils.ValidateUtils;
 
 /**
@@ -18,9 +18,9 @@ public enum Validator {
 	NOT_BLANK {
 
 		@Override
-		public void validate(String name, String value) throws ValidateException {
-			if (StringUtils.isBlank(value)) {
-				throw new ValidateException(name + "不能为空！");
+		public void validate(String name, String value) throws SystemException {
+			if (StringHelper.isBlank(value)) {
+				throw new SystemException(name + "不能为空！");
 			}
 		}
 	},
@@ -30,9 +30,9 @@ public enum Validator {
 	CHINESE {
 
 		@Override
-		public void validate(String name, String value) throws ValidateException {
+		public void validate(String name, String value) throws SystemException {
 			if (!ValidateUtils.isChinese(value)) {
-				throw new ValidateException(name + "必须为中文！");
+				throw new SystemException(name + "必须为中文！");
 			}
 		}
 	},
@@ -41,9 +41,9 @@ public enum Validator {
 	 */
 	INT {
 		@Override
-		public void validate(String name, String value) throws ValidateException {
+		public void validate(String name, String value) throws SystemException {
 			if (!ValidateUtils.isInteger(value)) {
-				throw new ValidateException(name + "必须为整数！");
+				throw new SystemException(name + "必须为整数！");
 			}
 		}
 	},
@@ -53,9 +53,9 @@ public enum Validator {
 	DATE {
 
 		@Override
-		public void validate(String name, String value) throws ValidateException {
+		public void validate(String name, String value) throws SystemException {
 			if (!ValidateUtils.isDate(value)) {
-				throw new ValidateException(name + "格式不对！");
+				throw new SystemException(name + "格式不对！");
 			}
 		}
 	},
@@ -65,18 +65,18 @@ public enum Validator {
 	IDNO {
 
 		@Override
-		public void validate(String name, String value) throws ValidateException {
+		public void validate(String name, String value) throws SystemException {
 			if (!ValidateUtils.isIdNo(value)) {
-				throw new ValidateException(name + "不符合身份证号格式，请检查！");
+				throw new SystemException(name + "不符合身份证号格式，请检查！");
 			}
 		}
 	},
 	IP {
 
 		@Override
-		public void validate(String name, String value) throws ValidateException {
+		public void validate(String name, String value) throws SystemException {
 			if (!ValidateUtils.isIp(value)) {
-				throw new ValidateException(name + "不符合IP地址格式，请检查！");
+				throw new SystemException(name + "不符合IP地址格式，请检查！");
 			}
 		}
 	},
@@ -86,9 +86,9 @@ public enum Validator {
 	EMAIL {
 
 		@Override
-		public void validate(String name, String value) throws ValidateException {
+		public void validate(String name, String value) throws SystemException {
 			if (!ValidateUtils.isEmail(value)) {
-				throw new ValidateException(name + "格式不正确，请检查！");
+				throw new SystemException(name + "格式不正确，请检查！");
 			}
 		}
 	},
@@ -98,9 +98,9 @@ public enum Validator {
 	MOBILE {
 
 		@Override
-		public void validate(String name, String value) throws ValidateException {
+		public void validate(String name, String value) throws SystemException {
 			if (!ValidateUtils.isMobile(value)) {
-				throw new ValidateException(name + "格式不正确，请检查！");
+				throw new SystemException(name + "格式不正确，请检查！");
 			}
 
 		}
@@ -111,9 +111,9 @@ public enum Validator {
 	PASSWORD {
 
 		@Override
-		public void validate(String name, String value) throws ValidateException {
+		public void validate(String name, String value) throws SystemException {
 			if (!ValidateUtils.isPassword(value)) {
-				throw new ValidateException(name + "格式不正确，请检查！");
+				throw new SystemException(name + "格式不正确，请检查！");
 			}
 		}
 	},
@@ -123,9 +123,9 @@ public enum Validator {
 	PERSONNAME {
 
 		@Override
-		public void validate(String name, String value) throws ValidateException {
+		public void validate(String name, String value) throws SystemException {
 			if (!ValidateUtils.isPersonName(value)) {
-				throw new ValidateException(name + "格式不正确，请检查！");
+				throw new SystemException(name + "格式不正确，请检查！");
 			}
 
 		}
@@ -136,9 +136,9 @@ public enum Validator {
 	USERNAME {
 
 		@Override
-		public void validate(String name, String value) throws ValidateException {
+		public void validate(String name, String value) throws SystemException {
 			if (!ValidateUtils.isUsername(value)) {
-				throw new ValidateException(name + "格式不正确，请检查！");
+				throw new SystemException(name + "格式不正确，请检查！");
 			}
 
 		}
@@ -150,9 +150,9 @@ public enum Validator {
 	MONEY {
 
 		@Override
-		public void validate(String name, String value) throws ValidateException {
+		public void validate(String name, String value) throws SystemException {
 			if (!ValidateUtils.isMoney(value)) {
-				throw new ValidateException(name + "格式不正确，请检查！");
+				throw new SystemException(name + "格式不正确，请检查！");
 			}
 		}
 	};
@@ -165,7 +165,7 @@ public enum Validator {
 	 *            参数的值
 	 * @throws Exception
 	 */
-	public abstract void validate(String name, String value) throws ValidateException;
+	public abstract void validate(String name, String value) throws SystemException;
 
 	/**
 	 * 根据验证器的名称获取验证器

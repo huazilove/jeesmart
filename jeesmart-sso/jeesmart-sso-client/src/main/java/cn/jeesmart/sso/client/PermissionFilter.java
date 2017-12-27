@@ -12,7 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.jeesmart.common.exception.ServiceException;
+import cn.jeesmart.common.constants.ReturnCode;
+import cn.jeesmart.common.exception.SystemException;
 import cn.jeesmart.sso.rpc.RpcPermission;
 import org.springframework.util.StringUtils;
 /**
@@ -37,7 +38,7 @@ public class PermissionFilter extends ClientFilter {
 		}else if (!ApplicationPermissionUtils.getApplicationPermissionSet().contains(path)) {
 			chain.doFilter(request, response);
 		}else {
-			throw new ServiceException(SsoResultCode.SSO_PERMISSION_ERROR, "没有访问权限");
+			throw new SystemException(ReturnCode.FORBIDDEN, "没有访问权限");
 		}
 	}
 

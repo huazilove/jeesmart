@@ -1,17 +1,13 @@
 package cn.jeesmart.sso.server.model;
 
-import java.util.Date;
-
-import cn.jeesmart.common.model.PersistentObject;
-import cn.jeesmart.common.model.enums.TrueFalseEnum;
-import com.alibaba.fastjson.annotation.JSONField;
+import cn.jeesmart.common.model.DataEntity;
 
 /**
  * 应用
  * 
  * @author Joe
  */
-public class App extends PersistentObject {
+public class App extends DataEntity {
 
 	private static final long serialVersionUID = 7902814112969375973L;
 	
@@ -21,21 +17,17 @@ public class App extends PersistentObject {
 	private String code;
 	/** 排序 */
 	private Integer sort = Integer.valueOf(1);
-	/** 创建时间 */
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	private Date createTime;
-	/** 是否启用 */
-	private Boolean isEnable = Boolean.valueOf(true);
+
+
 	
 	public App(){
 	}
 	
-	public App(String name, String code, Integer sort, Boolean isEnable) {
+	public App(String name, String code, Integer sort) {
 		super();
 		this.name = name;
 		this.code = code;
 		this.sort = sort;
-		this.isEnable = isEnable;
 	}
 
 	public String getName() {
@@ -62,22 +54,6 @@ public class App extends PersistentObject {
 		this.sort = sort;
 	}
 
-	public Date getCreateTime() {
-		return this.createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public Boolean getIsEnable() {
-		return this.isEnable;
-	}
-
-	public void setIsEnable(Boolean isEnable) {
-		this.isEnable = isEnable;
-	}
-	
 	/** 以下为显示辅助参数 */
 	private Boolean isChecked = Boolean.valueOf(false);
 	
@@ -87,9 +63,5 @@ public class App extends PersistentObject {
 
 	public void setIsChecked(Boolean isChecked) {
 		this.isChecked = isChecked;
-	}
-	
-	public String getIsEnableStr() {
-		return (isEnable != null && isEnable) ? TrueFalseEnum.TRUE.getLabel() : TrueFalseEnum.FALSE.getLabel();
 	}
 }

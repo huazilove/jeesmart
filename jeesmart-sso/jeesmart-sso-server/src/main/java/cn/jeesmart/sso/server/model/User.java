@@ -2,16 +2,15 @@ package cn.jeesmart.sso.server.model;
 
 import java.util.Date;
 
+import cn.jeesmart.common.model.DataEntity;
 import com.alibaba.fastjson.annotation.JSONField;
-import cn.jeesmart.common.model.PersistentObject;
-import cn.jeesmart.common.model.enums.TrueFalseEnum;
 
 /**
  * 管理员
  * 
  * @author Joe
  */
-public class User extends PersistentObject {
+public class User extends DataEntity {
 
 	private static final long serialVersionUID = 1106412532325860697L;
 	
@@ -26,11 +25,6 @@ public class User extends PersistentObject {
 	/** 最后登录时间 */
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Date lastLoginTime;
-	/** 创建时间 */
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	private Date createTime;
-	/** 是否启用 */
-	private Boolean isEnable = Boolean.valueOf(true);
 
 	public String getAccount() {
 		return account;
@@ -70,25 +64,5 @@ public class User extends PersistentObject {
 
 	public void setLastLoginTime(Date lastLoginTime) {
 		this.lastLoginTime = lastLoginTime;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public Boolean getIsEnable() {
-		return isEnable;
-	}
-
-	public void setIsEnable(Boolean isEnable) {
-		this.isEnable = isEnable;
-	}
-
-	public String getIsEnableStr() {
-		return (isEnable != null && isEnable) ? TrueFalseEnum.TRUE.getLabel() : TrueFalseEnum.FALSE.getLabel();
 	}
 }

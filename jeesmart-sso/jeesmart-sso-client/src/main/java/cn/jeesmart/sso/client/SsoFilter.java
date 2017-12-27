@@ -1,6 +1,7 @@
 package cn.jeesmart.sso.client;
 
-import cn.jeesmart.common.exception.ServiceException;
+import cn.jeesmart.common.constants.ReturnCode;
+import cn.jeesmart.common.exception.SystemException;
 import cn.jeesmart.sso.rpc.RpcUser;
 
 import java.io.IOException;
@@ -83,7 +84,7 @@ public class SsoFilter extends ClientFilter {
 	 */
 	private void redirectLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if (isAjaxRequest(request)) {
-			throw new ServiceException(SsoResultCode.SSO_TOKEN_ERROR, "未登录或已超时");
+			throw new SystemException(ReturnCode.UNAUTHORIZED, "未登录或已超时");
 		}
 		else {
 			SessionUtils.invalidate(request);

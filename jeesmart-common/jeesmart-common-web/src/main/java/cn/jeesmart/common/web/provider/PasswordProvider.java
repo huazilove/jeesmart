@@ -1,7 +1,7 @@
 package cn.jeesmart.common.web.provider;
 
-import cn.jeesmart.common.exception.ServiceException;
-import cn.jeesmart.common.utils.StringUtils;
+import cn.jeesmart.common.exception.SystemException;
+import cn.jeesmart.common.utils.StringHelper;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -24,14 +24,14 @@ public class PasswordProvider {
 	 * @return
 	 */
 	public static String encrypt(String password) {
-		if (StringUtils.isBlank(password)) {
-			throw new ServiceException("参数不能为空");
+		if (StringHelper.isBlank(password)) {
+			throw new SystemException("参数不能为空");
 		}
 		try {
 			return md5(new StringBuilder(password).append(SUFFIX).toString());
 		}
 		catch (Exception e) {
-			throw new ServiceException("密码加密错误");
+			throw new SystemException("密码加密错误");
 		}
 	}
 
