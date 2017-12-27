@@ -4,8 +4,8 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Session;
 
-import cn.jeesmart.common.utils.PropsUtil;
 import cn.jeesmart.common.utils.SpringUtils;
+import cn.jeesmart.common.utils.config.ConfigUtils;
 import cn.jeesmart.sso.server.service.PermissionJmsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +44,7 @@ public class PermissionJmsServiceImpl implements PermissionJmsService {
 
 	private void sendJmsMessage(JmsTemplate jmsTemplate, final String appCode) {
 		try {
-			String destinationName = PropsUtil.loadProps("").getProperty("mq.permission.queue.prefix").concat(appCode);
+			String destinationName = ConfigUtils.getProperty("mq.permission.queue.prefix").concat(appCode);
 			jmsTemplate.send(destinationName, new MessageCreator() {
 				@Override
 				public Message createMessage(Session session) throws JMSException {

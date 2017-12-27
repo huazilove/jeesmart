@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
  * @author Joe
  */
 @Service("rolePermissionService")
-public class RolePermissionServiceImpl extends AbstractBaseDao<RolePermission, Integer> implements RolePermissionService {
+public class RolePermissionServiceImpl extends AbstractBaseDao<RolePermission, String> implements RolePermissionService {
 
 }

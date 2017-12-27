@@ -1,6 +1,7 @@
 package cn.jeesmart.sso.server.service;
 
 import cn.jeesmart.common.dao.mybatis.BaseDao;
+import cn.jeesmart.sso.rpc.RpcPermission;
 import cn.jeesmart.sso.server.model.Permission;
 
 /**
@@ -8,6 +9,6 @@ import cn.jeesmart.sso.server.model.Permission;
  *
  * @author Joe
  */
-public interface PermissionService extends BaseDao<Permission, String> {
+public interface RpcPermissionService extends BaseDao<RpcPermission, String> {
 
 }

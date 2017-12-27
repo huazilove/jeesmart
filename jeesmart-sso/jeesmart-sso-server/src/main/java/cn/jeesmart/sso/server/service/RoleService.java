@@ -8,6 +8,6 @@ import cn.jeesmart.sso.server.model.Role;
  *
  * @author Joe
  */
-public interface RoleService extends BaseDao<Role, Integer> {
+public interface RoleService extends BaseDao<Role, String> {
 
 }

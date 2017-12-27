@@ -51,10 +51,10 @@ public interface BaseDao<T,PK extends Serializable> {
     void updateOrder(T entity);
    /**
     * 登陆
-    * @param entity
+    * @param maps
     * @return
     */
-    T login(T entity);
+    T login(Map<String, Object> maps);
    /**
     * 一个条件的分页
     * @param pageNo

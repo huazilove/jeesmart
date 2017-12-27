@@ -15,7 +15,7 @@
 	<context:annotation-config />
 	<aop:aspectj-autoproxy />
 	<!-- 自动扫描(自动注入) -->
-	<context:component-scan base-package="cn.jeesmart.sso.server.service" />
+	<context:component-scan base-package="cn.jeesmart.sso.server.service.impl" />
 	<bean class="cn.jeesmart.common.utils.config.ConfigUtils">
 		<property name="fileEncoding" value="UTF-8" />
 		<property name="locations">

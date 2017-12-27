@@ -8,11 +8,14 @@ import cn.jeesmart.sso.rpc.RpcUser;
 import cn.jeesmart.sso.server.common.LoginUser;
 import cn.jeesmart.sso.server.common.TokenManager;
 import cn.jeesmart.sso.server.service.PermissionService;
+import cn.jeesmart.sso.server.service.RpcPermissionService;
 import cn.jeesmart.sso.server.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -23,6 +26,8 @@ public class AuthenticationRpcServiceImpl implements AuthenticationRpcService {
 
 	@Resource
 	private PermissionService permissionService;
+	@Resource
+	private RpcPermissionService rpcPermissionService;
 	@Resource
 	private UserService userService;
 	@Resource
@@ -44,13 +49,16 @@ public class AuthenticationRpcServiceImpl implements AuthenticationRpcService {
 	
 	@Override
 	public List<RpcPermission> findPermissionList(String token, String appCode) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("appCode",appCode);
 		if (StringHelper.isBlank(token)) {
-			return null;//permissionService.findListById(appCode, null);
+			return rpcPermissionService.findAllByKey(map,".findListById");
 		}
 		else {
 			LoginUser user = tokenManager.validate(token);
 			if (user != null) {
-				return null;//permissionService.findListById(appCode, user.getUserId());
+				map.put("userId",user.getUserId());
+				return rpcPermissionService.findAllByKey(map,".findListById");
 			}
 			else {
 				return new ArrayList<RpcPermission>(0);

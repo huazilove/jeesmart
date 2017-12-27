@@ -52,10 +52,11 @@ import java.util.Map;
     void updateOrder(T entity);
    /**
     * 登陆
-    * @param entity
+    * @param maps
+    * @param entityClass
     * @return
     */
-    T login(T entity);
+    T login(Class<T> entityClass, Map<String, Object> maps);
    /**
     * 带一个条件的分页
     * @param entityClass

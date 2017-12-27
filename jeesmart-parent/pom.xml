@@ -22,7 +22,7 @@
             <id>local</id>
             <properties>
                 <env>local</env>
-                <log.level>debug</log.level>
+                <log.level>error</log.level>
                 <log.url>${catalina.home}/logs</log.url>
             </properties>
             <activation>
@@ -82,6 +82,7 @@
         <jstl.version>1.2</jstl.version>
         <jsp-api.version>2.2</jsp-api.version>
         <servlet.version>3.1.0</servlet.version>
+        <hessian.version>4.0.38</hessian.version>
         <activemq.version>5.13.3</activemq.version>
         <dubbo.version>2.5.3</dubbo.version>
         <zookeeper.version>0.1</zookeeper.version>
@@ -345,7 +346,12 @@
                 <artifactId>activemq-client</artifactId>
                 <version>${activemq.version}</version>
             </dependency>
-
+            <!-- 远程RPC调用hessian支持 -->
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>${hessian.version}</version>
+            </dependency>
             <!-- Dubbo -->
             <dependency>
                 <groupId>com.alibaba</groupId>

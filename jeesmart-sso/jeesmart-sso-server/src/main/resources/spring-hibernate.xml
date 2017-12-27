@@ -26,7 +26,7 @@
 			</props>
 		</property>
 		<!-- 扫描hibernate注解配置的entity -->
-		<property name="packagesToScan" value="cn.jeesmart.demo.entity" />
+		<property name="packagesToScan" value="cn.jeesmart.sso.server.model" />
 	</bean>
 
 	<!-- 配置事务管理器 -->

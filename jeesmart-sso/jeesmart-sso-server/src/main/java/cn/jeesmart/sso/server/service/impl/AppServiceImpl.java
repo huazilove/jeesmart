@@ -11,6 +11,6 @@ import org.springframework.stereotype.Service;
  * @author Joe
  */
 @Service
-public class AppServiceImpl extends AbstractBaseDao<App, Integer> implements AppService {
+public class AppServiceImpl extends AbstractBaseDao<App, String> implements AppService {
 
 }

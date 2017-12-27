@@ -3,9 +3,6 @@
          xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
-    <welcome-file-list>
-        <welcome-file>/pages/template/login.jsp</welcome-file>
-    </welcome-file-list>
     <!-- Spring核心 -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -27,7 +24,51 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!-- 由Spring借助Redis接管HttpSession，实现分布式共享Session -->
+    <filter>
+        <filter-name>springSessionRepositoryFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSessionRepositoryFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
+    <!-- 验证码 -->
+    <filter>
+        <filter-name>captchaFilter</filter-name>
+        <filter-class>cn.jeesmart.common.web.captcha.CaptchaFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>captchaFilter</filter-name>
+        <url-pattern>/captcha</url-pattern>
+    </filter-mapping>
+    <!-- 单点登录 -->
+    <filter>
+        <filter-name>ssoFilter</filter-name>
+        <filter-class>cn.jeesmart.sso.client.SsoFilter</filter-class>
+        <init-param>
+            <param-name>excludes</param-name>
+            <param-value>/login,/logout,/rpc,/swagger-ui.html,/webjars/**,/swagger-resources/**,/v2/api-docs</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>ssoFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- 权限控制(选配) -->
+    <filter>
+        <filter-name>permissionFilter</filter-name>
+        <filter-class>cn.jeesmart.sso.client.PermissionFilter</filter-class>
+        <init-param>
+            <param-name>excludes</param-name>
+            <param-value>/login,/logout,/rpc,/swagger-ui.html,/webjars/**,/swagger-resources/**,/v2/api-docs</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>permissionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <!-- SpringMVC核心 -->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
@@ -42,17 +83,25 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    <!-- DruidStatView -->
+    <!-- 身份认证授权RPC服务 -->
     <servlet>
-        <servlet-name>DruidStatView</servlet-name>
-        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+        <servlet-name>rpc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
-            <param-name>allow</param-name>
-            <param-value>127.0.0.1</param-value>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-rpc.xml</param-value>
         </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>DruidStatView</servlet-name>
-        <url-pattern>/druid/*</url-pattern>
+        <servlet-name>rpc</servlet-name>
+        <url-pattern>/rpc/*</url-pattern>
     </servlet-mapping>
+    <!-- 应用初始化参数 -->
+    <servlet>
+        <servlet-name>configServlet</servlet-name>
+        <servlet-class>cn.jeesmart.sso.server.common.ConfigServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+        <async-supported>true</async-supported>
+    </servlet>
 </web-app>

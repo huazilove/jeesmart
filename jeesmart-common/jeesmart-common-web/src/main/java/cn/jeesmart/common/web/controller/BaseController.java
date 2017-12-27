@@ -110,15 +110,11 @@ public abstract class BaseController {
      * Make error message map.
      *
      * @param code  the code
-     * @param error the error
-     * @param desc  the desc
      * @return the map
      */
-    protected Map<String, Object> makeErrorMessage(String code, String error, String desc, Object data) {
+    protected Map<String, Object> makeErrorMessage(String code,Object data) {
         Map<String, Object> message = new HashMap<>();
         message.put(Message.RETURN_FIELD_CODE, code);
-        message.put(Message.RETURN_FIELD_ERROR, error);
-        message.put(Message.RETURN_FIELD_ERROR_DESC, desc);
         message.put(Message.RETURN_FIELD_DATA, data);
         return message;
     }

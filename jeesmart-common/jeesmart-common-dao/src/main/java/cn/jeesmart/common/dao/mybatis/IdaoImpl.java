@@ -89,9 +89,8 @@ public class IdaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport
 				entity);
 	}
 	@Override
-	public T login(T entity) {
-		return getSqlSession().selectOne(
-				entity.getClass().getName() + ".login", entity);
+	public T login(Class<T> entityClass,Map<String, Object> maps) {
+		return getSqlSession().selectOne(entityClass.getName() + ".login", maps);
 	}
 
 	/**
@@ -131,8 +130,7 @@ public class IdaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport
 	public int isExist(Class<T> entityClass, Map<String, Object> maps,
 			String operate) {
 		int count = 0;
-		count = getSqlSession()
-				.selectOne(entityClass.getName() + operate, maps);
+		count = getSqlSession().selectOne(entityClass.getName() + operate, maps);
 		return count;
 	}
 	@Override

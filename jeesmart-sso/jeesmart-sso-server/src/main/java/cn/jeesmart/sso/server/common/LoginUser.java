@@ -14,23 +14,23 @@ public class LoginUser implements Serializable {
 	/**
 	 * 登录成功ID
 	 */
-	private Integer userId;
+	private String userId;
 	/**
 	 * 登录成功用户名
 	 */
 	private String account;
 
-	public LoginUser(Integer userId, String account) {
+	public LoginUser(String userId, String account) {
 		super();
 		this.userId = userId;
 		this.account = account;
 	}
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

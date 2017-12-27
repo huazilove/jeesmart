@@ -8,6 +8,6 @@ import cn.jeesmart.sso.server.model.UserApp;
  * 
  * @author Joe
  */
-public interface UserAppService extends BaseDao<UserApp, Integer> {
+public interface UserAppService extends BaseDao<UserApp, String> {
 
 }

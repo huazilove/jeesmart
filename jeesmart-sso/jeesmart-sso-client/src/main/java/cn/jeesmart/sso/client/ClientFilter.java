@@ -9,9 +9,9 @@ import java.util.Map;
 
 import cn.jeesmart.common.constants.Message;
 import cn.jeesmart.common.exception.SystemException;
-import cn.jeesmart.common.utils.PropsUtil;
 import cn.jeesmart.common.utils.SpringUtils;
 import cn.jeesmart.common.utils.StringHelper;
+import cn.jeesmart.common.utils.config.ConfigUtils;
 import cn.jeesmart.sso.rpc.AuthenticationRpcService;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.AntPathMatcher;
@@ -36,7 +36,6 @@ public abstract class ClientFilter implements Filter {
 	protected String ssoServerUrl;
 	private static final String SSO_SERVER_URL ="sso.server.url";
 	private static final String SSO_APP_CODE ="sso.app.code";
-	private static final String FILE_NAME ="sso.proerties";
 	/**
 	 * 当前应用关联权限系统的应用编码
 	 */
@@ -55,10 +54,10 @@ public abstract class ClientFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		if (StringHelper.isBlank(ssoServerUrl = PropsUtil.loadProps(FILE_NAME).getProperty(SSO_SERVER_URL))) {
+		if (StringHelper.isBlank(ssoServerUrl = ConfigUtils.getProperty(SSO_SERVER_URL))) {
 			throw new IllegalArgumentException("ssoServerUrl不能为空");
 		}
-		if (StringHelper.isBlank(ssoAppCode =PropsUtil.loadProps(FILE_NAME).getProperty(SSO_APP_CODE))) {
+		if (StringHelper.isBlank(ssoAppCode = ConfigUtils.getProperty(SSO_APP_CODE))) {
 			throw new IllegalArgumentException("ssoAppCode不能为空");
 		}
 		if ((authenticationRpcService = SpringUtils.getBean(AuthenticationRpcService.class)) == null) {

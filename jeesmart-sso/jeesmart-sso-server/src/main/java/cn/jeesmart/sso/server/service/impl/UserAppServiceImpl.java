@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service;
  * @author Joe
  */
 @Service("userAppService")
-public class UserAppServiceImpl extends AbstractBaseDao<UserApp, Integer> implements UserAppService {
+public class UserAppServiceImpl extends AbstractBaseDao<UserApp, String> implements UserAppService {
 
 }

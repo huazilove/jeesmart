@@ -25,7 +25,7 @@
 	</bean>
 
 	<!-- 默认跳转管理员首页，因为没有权限会跳转至登录页 -->
-	<mvc:view-controller path="/" view-name="redirect:swagger-ui.html" />
+	<mvc:view-controller path="/" view-name="redirect:admin/admin" />
 
 	<!-- Swagger文档 -->
 	<bean id="swagger2Config" class="cn.jeesmart.sso.server.common.SwaggerConfig" />

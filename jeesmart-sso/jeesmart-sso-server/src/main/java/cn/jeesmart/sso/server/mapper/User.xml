@@ -6,6 +6,18 @@
      	FROM SYS_USER a
      	WHERE id = #{id}
     </select>
+
+	<select id="login" parameterType="map" resultType="cn.jeesmart.sso.server.model.User">
+		SELECT a.*
+		FROM SYS_USER a
+		WHERE 1 = 1
+		<if test="account != null and account != '' ">
+			AND a.account = #{account}
+		</if>
+		<if test="password != null and password != '' ">
+			AND a.password = #{password}
+		</if>
+	</select>
     
 	<insert id="insert" parameterType="cn.jeesmart.sso.server.model.User" statementType="PREPARED" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO SYS_USER(

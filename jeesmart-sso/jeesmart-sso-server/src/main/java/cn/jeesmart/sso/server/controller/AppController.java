@@ -38,7 +38,7 @@ public class AppController extends BaseController{
 		param.put("pageNo",(pageNo-1)*pageSize);
 		param.put("pageSize",pageSize);
 		Pager<App> pager = appService.findByKey(param,".findByKey");
-		return makeErrorMessage(ReturnCode.SUCCESS,"","",pager);
+		return makeErrorMessage(ReturnCode.SUCCESS,pager);
 	}
 
 	@ApiOperation(value ="验证应用编码")

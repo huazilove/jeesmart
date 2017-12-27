@@ -69,8 +69,8 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements
 	}
 
 	@Override
-	public T login(T entity) {
-		return idao.login(entity);
+	public T login(Map<String, Object> maps) {
+		return (T)idao.login(entityClass,maps);
 	}
 
 	@Override

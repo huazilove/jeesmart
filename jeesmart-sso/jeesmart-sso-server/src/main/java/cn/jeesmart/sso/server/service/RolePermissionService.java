@@ -8,6 +8,6 @@ import cn.jeesmart.sso.server.model.RolePermission;
  * 
  * @author Joe
  */
-public interface RolePermissionService extends BaseDao<RolePermission, Integer> {
+public interface RolePermissionService extends BaseDao<RolePermission, String> {
 
 }

@@ -217,7 +217,11 @@
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-client</artifactId>
         </dependency>
-
+        <!-- 远程RPC调用hessian支持 -->
+        <dependency>
+            <groupId>com.caucho</groupId>
+            <artifactId>hessian</artifactId>
+        </dependency>
         <!-- Dubbo -->
         <dependency>
             <groupId>com.alibaba</groupId>
