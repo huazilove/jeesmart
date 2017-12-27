@@ -1,20 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<property name="log.url" value="logs"></property>
-	<property name="log.level" value="error"></property>
-	<property name="log.mail.host" value="smtp.163.com"></property>
-	<property name="log.mail.port" value="25"></property>
-	<property name="log.mail.username" value="consukj@163.com"></property>
-	<property name="log.mail.password" value="gskj10086!"></property>
-	<property name="log.mail.to" value="415213294@qq.com"></property>
-	<property name="project.artifactId" value="dataSyncServer"></property>
-	<property name="email_subject" value="xxxx预警" />
 	<contextName>${project.artifactId}</contextName>
+
 	<jmxConfigurator />
 
 	<!-- Spring定时器 TaskScheduler is defined -->
 	<logger name="org.springframework.scheduling">
-		<level value="error" />
+		<level value="info" />
 	</logger>
 
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -49,7 +40,7 @@
 		<smtpPort>${log.mail.port}</smtpPort>
 		<username>${log.mail.username}</username>
 		<password>${log.mail.password}</password>
-		<subject>${email_subject}</subject>
+		<subject>${project.artifactId}[${env}]: %logger{20}</subject>
 		<from>${log.mail.username}</from>
 		<to>${log.mail.to}</to>
 

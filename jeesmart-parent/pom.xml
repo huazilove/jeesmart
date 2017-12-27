@@ -22,6 +22,8 @@
             <id>local</id>
             <properties>
                 <env>local</env>
+                <log.level>debug</log.level>
+                <log.url>${catalina.home}/logs</log.url>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -32,6 +34,8 @@
             <id>dev</id>
             <properties>
                 <env>dev</env>
+                <log.level>info</log.level>
+                <log.url>${catalina.home}/logs</log.url>
             </properties>
         </profile>
         <!-- 生产环境 -->
@@ -39,6 +43,8 @@
             <id>pro</id>
             <properties>
                 <env>pro</env>
+                <log.level>error</log.level>
+                <log.url>${catalina.home}/logs</log.url>
             </properties>
         </profile>
     </profiles>

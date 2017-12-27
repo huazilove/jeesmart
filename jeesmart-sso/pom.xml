@@ -12,10 +12,17 @@
     <name>${project.artifactId}</name>
     <description>单点登录</description>
     <inceptionYear>2017</inceptionYear>
+    <url>http://maven.apache.org</url>
+    <!-- 日志邮箱参数应用级：不同的应用可能异常通知邮箱不同 -->
+    <properties>
+        <log.mail.host>smtp.163.com</log.mail.host>
+        <log.mail.port>25</log.mail.port>
+        <log.mail.username>consukj@163.com</log.mail.username>
+        <log.mail.password>gskj10086!</log.mail.password>
+        <log.mail.to>a466350665@qq.com</log.mail.to>
+    </properties>
     <modules>
         <module>jeesmart-sso-client</module>
         <module>jeesmart-sso-server</module>
     </modules>
-    <url>http://maven.apache.org</url>
-
 </project>
