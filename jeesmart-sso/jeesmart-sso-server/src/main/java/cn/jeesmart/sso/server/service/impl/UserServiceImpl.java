@@ -6,8 +6,11 @@ import cn.jeesmart.common.model.enums.TrueFalseEnum;
 import cn.jeesmart.sso.server.model.App;
 import cn.jeesmart.sso.server.model.User;
 import cn.jeesmart.sso.server.service.AppService;
+import cn.jeesmart.sso.server.service.UserAppService;
+import cn.jeesmart.sso.server.service.UserRoleService;
 import cn.jeesmart.sso.server.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
@@ -23,8 +26,13 @@ public class UserServiceImpl extends AbstractBaseDao<User, String> implements Us
     private UserService userService;
     @Resource
     private AppService appService;
+    @Resource
+    private UserAppService userAppService;
+    @Resource
+    private UserRoleService userRoleService;
     @Override
     public Map<String,Object> login(String ip, String appCode, String account, String password) {
+        String operate =  ".findAppCodeByUserId";
         Map<String,Object> map = new HashMap<>();
         Map<String,Object> param = new HashMap<>();
         param.put("account",account);
@@ -41,7 +49,7 @@ public class UserServiceImpl extends AbstractBaseDao<User, String> implements Us
         else {
             param.put("userId",user.getId());
             param.put("isEnable",TrueFalseEnum.TRUE.getValue());
-            List<?> set = appService.find(param,".findAppCodeByUserId");
+            List<?> set = appService.find(param,operate);
             if (CollectionUtils.isEmpty(set)) {
                 map.put(Message.RETURN_FIELD_CODE,ReturnCode.ERROR);
                 map.put(Message.RETURN_FIELD_ERROR,"不存在可操作应用");
@@ -60,5 +68,12 @@ public class UserServiceImpl extends AbstractBaseDao<User, String> implements Us
             }
         }
         return map;
+    }
+    @Override
+    @Transactional
+    public void deleteById(List<String> idList) {
+        userAppService.batchDelete(idList);
+        userRoleService.batchDelete(idList);
+        super.batchDelete(idList);
     }
 }

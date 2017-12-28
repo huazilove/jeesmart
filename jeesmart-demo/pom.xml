@@ -14,8 +14,14 @@
     <inceptionYear>2017</inceptionYear>
     <url>http://maven.apache.org</url>
 
+    <!-- 日志邮箱参数应用级：不同的应用可能异常通知邮箱不同 -->
     <properties>
         <server.port>8080</server.port>
+        <log.mail.host>smtp.163.com</log.mail.host>
+        <log.mail.port>25</log.mail.port>
+        <log.mail.username>consukj@163.com</log.mail.username>
+        <log.mail.password>gskj10086!</log.mail.password>
+        <log.mail.to>a466350665@qq.com</log.mail.to>
     </properties>
     <dependencies>
         <!-- J2EE支持 -->
@@ -31,13 +37,54 @@
         </dependency>
         <dependency>
             <groupId>cn.jeesmart</groupId>
-            <artifactId>jeesmart-common-redis</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.jeesmart</groupId>
             <artifactId>jeesmart-common-exception</artifactId>
             <version>${project.parent.version}</version>
+        </dependency>
+
+        <!-- sso单点登录客户端 -->
+        <dependency>
+            <groupId>cn.jeesmart</groupId>
+            <artifactId>jeesmart-sso-client</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <!-- 单元测试 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Jstl支持 -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+
+        <!-- dubbo -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Netty -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-transport</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-handler</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-codec-http</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -38,6 +38,15 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements
 	public void delete(PK pk) {
 		idao.delete(entityClass, pk);
 	}
+	@Override
+	public void delete(Map<String, Object> maps, String operate) {
+		idao.delete(entityClass, maps,operate);
+	}
+
+	@Override
+	public void batchDelete(List<?> dataList) {
+		verifyRows(idao.batchDelete(entityClass,dataList), dataList.size(), "数据库批量删除失败");
+	}
 
 	@Override
 	public void update(T entity) {
@@ -46,6 +55,10 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements
 	@Override
 	public void batchUpdate(List<T> dataList) {
 		verifyRows(idao.batchUpdate(entityClass,dataList), dataList.size(), "数据库批量修改失败");
+	}
+	@Override
+	public void batchUpdate(Map<String, Object> maps,List<?> dataList, String operate) {
+		verifyRows(idao.batchUpdate(entityClass,maps,operate), dataList.size(), "数据库批量修改失败");
 	}
 
 	@Override

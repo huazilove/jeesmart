@@ -13,7 +13,7 @@
 		</if>
 	</select>
 
-	<insert id="insert" parameterType="cn.jeesmart.sso.server.model.UserRole" statementType="PREPARED" useGeneratedKeys="true" keyProperty="id">
+	<insert id="add" parameterType="cn.jeesmart.sso.server.model.UserRole" statementType="PREPARED" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO SYS_RE_USER_ROLE(
 			appId,
 			userId,

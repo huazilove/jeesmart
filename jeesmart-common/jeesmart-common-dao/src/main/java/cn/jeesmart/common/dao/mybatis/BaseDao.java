@@ -22,6 +22,12 @@ public interface BaseDao<T,PK extends Serializable> {
     * @param pk
     */
     void delete(PK pk);
+    /**
+     * 删除
+     * @param operate
+     * @return
+     */
+    void delete(Map<String, Object> maps, String operate);
    /**
     * 修改
     * @param entity
@@ -104,6 +110,19 @@ public interface BaseDao<T,PK extends Serializable> {
      * @return
      */
      void batchUpdate(List<T> dataList);
+    /**
+     * 批量修改
+     * @param operate
+     * @return
+     */
+    void batchUpdate(Map<String, Object> maps,List<?> dataList, String operate);
+
+    /**
+     * 批量删除
+     * @param dataList
+     * @return
+     */
+    void batchDelete(List<?> dataList);
     /**
      * 通过条件查询全部内容
      * @param maps

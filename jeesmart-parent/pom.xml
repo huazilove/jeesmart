@@ -22,7 +22,7 @@
             <id>local</id>
             <properties>
                 <env>local</env>
-                <log.level>error</log.level>
+                <log.level>debug</log.level>
                 <log.url>${catalina.home}/logs</log.url>
             </properties>
             <activation>
@@ -555,11 +555,11 @@
 
     <build>
         <plugins>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.7</version>
-            </plugin>-->
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

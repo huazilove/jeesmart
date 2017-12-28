@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.jeesmart.sso.server.model.App">
-	<select id="findById" parameterType="java.lang.Integer" resultType="App">
+	<select id="findById" parameterType="java.lang.String" resultType="App">
      	SELECT * 
      	FROM SYS_APP a
      	WHERE id = #{id}
     </select>
+
+	<select id="findAll"  resultType="App">
+		SELECT *
+		FROM SYS_APP a
+	</select>
     
 	<insert id="add" parameterType="cn.jeesmart.sso.server.model.App" statementType="PREPARED" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO SYS_APP(
@@ -68,7 +73,7 @@
 		AND a.code = #{code} 
 	</select>
 	
-	<delete id="deleteById" parameterType="list" statementType="PREPARED">
+	<delete id="batchDelete" parameterType="list" statementType="PREPARED">
 		DELETE FROM SYS_APP
 		<choose>
 			<when test="list == null or list.size() == 0">

@@ -2,6 +2,7 @@ package cn.jeesmart.sso.server.service;
 import cn.jeesmart.common.dao.mybatis.BaseDao;
 import cn.jeesmart.sso.server.model.User;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -20,4 +21,9 @@ public interface UserService extends BaseDao<User, String> {
      * @return
      */
     public Map<String,Object> login(String ip, String appCode, String account, String password);
+    /**
+     * 通过主键集合删除实体
+     * @param idList
+     */
+    public void deleteById(List<String> idList);
 }

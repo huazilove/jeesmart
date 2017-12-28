@@ -23,20 +23,20 @@ public abstract class BaseController {
 
     private static final String UNKNOWN = "unknown";
 
-    private Integer[] getAjaxIds(final String str, final String separator) {
-        Integer[] ids = null;
+    private String[] getAjaxIds(final String str, final String separator) {
+        String[] ids = null;
         if (str != null) {
             String[] strs = str.split(separator);
-            ids = new Integer[strs.length];
+            ids = new String[strs.length];
             for (int i = 0, length = strs.length; i < length; i++) {
-                ids[i] = Integer.valueOf(strs[i]);
+                ids[i] = String.valueOf(strs[i]);
             }
         }
         return ids;
     }
 
-    protected List<Integer> getAjaxIds(final String ids) {
-        return StringHelper.isBlank(ids) ? new ArrayList<Integer>(0) : Arrays.asList(getAjaxIds(ids, ","));
+    protected List<String> getAjaxIds(final String ids) {
+        return StringHelper.isBlank(ids) ? new ArrayList<String>(0) : Arrays.asList(getAjaxIds(ids, ","));
     }
 
 

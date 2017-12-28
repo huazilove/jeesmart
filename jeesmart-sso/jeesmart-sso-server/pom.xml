@@ -14,7 +14,7 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <server.port>8080</server.port>
+        <server.port>8083</server.port>
     </properties>
     <dependencies>
         <!-- J2EE支持 -->

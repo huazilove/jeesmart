@@ -18,10 +18,15 @@ import java.util.Map;
 	 */
     void save(T entity);
    /**
-    * 删除
-    * @param pk
-    */
+     * 删除
+     * @param pk
+     */
     void delete(Class<T> entityClass, PK pk);
+    /**
+     * 删除
+     * @param operate
+     */
+    void delete(Class<T> entityClass, Map<String, Object> maps, String operate);
    /**
     * 修改
     * @param entity
@@ -113,6 +118,22 @@ import java.util.Map;
      * @return
      */
      int batchUpdate(Class<T> entityClass,List<T> dataList);
+
+    /**
+     * 批量修改
+     * @param entityClass
+     * @param operate
+     * @return
+     */
+    int batchUpdate(Class<T> entityClass,Map<String, Object> maps, String operate);
+
+    /**
+     * 批量删除
+     * @param entityClass
+     * @param dataList
+     * @return
+     */
+    int batchDelete(Class<T> entityClass,List<?> dataList);
     /**
      * 根据条件 查询所有内容
      * @param entityClass

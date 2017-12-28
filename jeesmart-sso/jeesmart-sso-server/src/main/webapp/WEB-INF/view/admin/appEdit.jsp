@@ -106,7 +106,7 @@
 					$.post("${_path}/admin/app/save", $.formJson('_editForm'),function(d) {
 						if(d){
 							btn.button('reset');
-							if(d.code == 1){
+							if(d.code == "0"){
 								$.aceRedirect("${_path}/admin/app");
 							}
 							else {
