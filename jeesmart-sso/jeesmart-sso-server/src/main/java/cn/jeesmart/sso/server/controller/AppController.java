@@ -33,22 +33,30 @@ public class AppController extends BaseController{
 			@ApiParam(value = "名称 ") @RequestParam("name") String name,
 			@ApiParam(value = "开始页码", required = true) @RequestParam("pageNo") Integer pageNo,
 			@ApiParam(value = "显示条数", required = true) @RequestParam("pageSize") Integer pageSize) {
+		/**
+		 * 跟sql语句ID对应
+		 */
+		String operate = ".findByKey";
 		Map<String,Object> param = new HashMap<>();
 		param.put("name",name);
 		param.put("pageNo",(pageNo-1)*pageSize);
 		param.put("pageSize",pageSize);
-		Pager<App> pager = appService.findByKey(param,".findByKey");
+		Pager<App> pager = appService.findByKey(param,operate);
 		return makeErrorMessage(ReturnCode.SUCCESS,pager);
 	}
 
 	@ApiOperation(value ="验证应用编码")
 	@RequestMapping(value = "/validateCode", method = RequestMethod.POST)
 	public Map<String, Object> validateCode(
-			@ApiParam(value = "id") Integer id,
+			@ApiParam(value = "id") @RequestParam("id")Integer id,
 			@ApiParam(value = "应用编码", required = true) @RequestParam("code") String code) {
+		/**
+		 * 跟sql语句ID对应
+		 */
+		String operate = ".findByCode";
 		Map<String,Object> param = new HashMap<>();
 		param.put("code",code);
-		App db = appService.findByParam(param,".findByCode");
+		App db = appService.findByParam(param,operate);
 		if (null != db && !db.getId().equals(id)) {
 			return makeErrorMessage(ReturnCode.ERROR,"应用编码已存在","应用编码已存在");
 		}

@@ -11,10 +11,11 @@ import io.swagger.annotations.ApiOperation;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
@@ -22,7 +23,7 @@ import java.util.Map;
  * @author Joe
  */
 @Api(tags = "首页管理")
-@RestController
+@Controller
 @RequestMapping("/admin/admin")
 public class AdminController extends BaseController{
 
@@ -41,6 +42,7 @@ public class AdminController extends BaseController{
 
 	@ApiOperation("菜单")
 	@RequestMapping(value = "/menu", method = RequestMethod.GET)
+	@ResponseBody
 	public Map<String, Object> menu(HttpServletRequest request) {
 		SessionPermission sessionPermission = SessionUtils.getSessionPermission(request);
 		// 如果配置的权限拦截器，则获取登录用户权限下的菜单，没有权限拦截限制的情况下，获取当前系统菜单呈现

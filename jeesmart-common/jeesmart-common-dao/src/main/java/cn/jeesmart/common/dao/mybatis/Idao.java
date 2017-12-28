@@ -113,4 +113,12 @@ import java.util.Map;
      * @return
      */
      int batchUpdate(Class<T> entityClass,List<T> dataList);
+    /**
+     * 根据条件 查询所有内容
+     * @param entityClass
+     * @param maps
+     * @param operate
+     * @return
+     */
+    List<?> find(Class<T> entityClass, Map<String, Object> maps, String operate);
 }

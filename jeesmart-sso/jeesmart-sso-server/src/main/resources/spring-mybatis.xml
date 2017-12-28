@@ -15,6 +15,8 @@
 		<property name="dataSource" ref="dataSource" />
 		<!-- 配置model的alias,别名(即类名) -->
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<!-- 配置model的alias,别名(即类名) -->
+		<property name="typeAliasesPackage" value="cn.jeesmart.sso.server.model" />
 		<!-- 所有配置的aliasemapper文件 -->
 		<property name="mapperLocations" value="classpath*:cn/jeesmart/sso/server/mapper/*.xml" />
 	</bean>

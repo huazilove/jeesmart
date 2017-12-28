@@ -142,4 +142,8 @@ public class IdaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport
 	public List<T> findAllByKey(Class<T> entityClass, Map<String, Object> maps,String operate) {
 		return getSqlSession().selectList(entityClass.getName() + operate,maps);
 	}
+	@Override
+	public List<?> find(Class<T> entityClass, Map<String, Object> maps,String operate) {
+		return getSqlSession().selectList(entityClass.getName() + operate,maps);
+	}
 }

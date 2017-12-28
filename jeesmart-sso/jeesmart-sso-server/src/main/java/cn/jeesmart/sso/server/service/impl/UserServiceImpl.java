@@ -3,6 +3,7 @@ import cn.jeesmart.common.constants.Message;
 import cn.jeesmart.common.constants.ReturnCode;
 import cn.jeesmart.common.dao.mybatis.AbstractBaseDao;
 import cn.jeesmart.common.model.enums.TrueFalseEnum;
+import cn.jeesmart.sso.server.model.App;
 import cn.jeesmart.sso.server.model.User;
 import cn.jeesmart.sso.server.service.AppService;
 import cn.jeesmart.sso.server.service.UserService;
@@ -10,10 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -43,7 +41,7 @@ public class UserServiceImpl extends AbstractBaseDao<User, String> implements Us
         else {
             param.put("userId",user.getId());
             param.put("isEnable",TrueFalseEnum.TRUE.getValue());
-            Set<String> set = appService.findAllByKey(param,".findAppCodeByUserId");
+            List<?> set = appService.find(param,".findAppCodeByUserId");
             if (CollectionUtils.isEmpty(set)) {
                 map.put(Message.RETURN_FIELD_CODE,ReturnCode.ERROR);
                 map.put(Message.RETURN_FIELD_ERROR,"不存在可操作应用");
@@ -57,6 +55,7 @@ public class UserServiceImpl extends AbstractBaseDao<User, String> implements Us
                 user.setLoginCount(user.getLoginCount() + 1);
                 user.setLastLoginTime(new Date());
                 userService.update(user);
+                map.put(Message.RETURN_FIELD_CODE,ReturnCode.SUCCESS);
                 map.put(Message.RETURN_FIELD_DATA,user);
             }
         }

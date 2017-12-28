@@ -104,4 +104,11 @@ public interface BaseDao<T,PK extends Serializable> {
      * @return
      */
      void batchUpdate(List<T> dataList);
+    /**
+     * 通过条件查询全部内容
+     * @param maps
+     * @param operate
+     * @return
+     */
+    List<?> find(Map<String, Object> maps, String operate);
 }

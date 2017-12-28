@@ -96,6 +96,10 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements
 	public List<T> findAllByKey(Map<String, Object> maps,String operate) {
 		return idao.findAllByKey(entityClass, maps, operate);
 	}
+	@Override
+	public List<?> find(Map<String, Object> maps,String operate) {
+		return idao.find(entityClass, maps, operate);
+	}
 	/**
 	 * 为高并发环境出现的更新和删除操作，验证更新数据库记录条数
 	 *
