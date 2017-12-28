@@ -32,11 +32,11 @@
 		</if>
 	</delete>
 	
-	<delete id="deleteByRoleIds" parameterType="map" statementType="PREPARED">
+	<delete id="batchDelete" parameterType="map" statementType="PREPARED">
 		DELETE FROM SYS_RE_ROLE_PERMISSION
 		WHERE 1 = 1
-		<if test="idList != null">
-			AND roleId in <foreach collection="idList" item="item" open="(" separator="," close=")">#{item}</foreach>
+		<if test="list != null">
+			AND roleId in <foreach collection="list" item="item" open="(" separator="," close=")">#{item}</foreach>
 		</if>
 	</delete>
 	

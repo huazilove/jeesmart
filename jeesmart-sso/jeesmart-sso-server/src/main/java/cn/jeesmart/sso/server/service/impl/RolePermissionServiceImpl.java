@@ -27,7 +27,7 @@ public class RolePermissionServiceImpl extends AbstractBaseDao<RolePermission, S
     @Override
     @Transactional
     public void allocate(String roleId, List<RolePermission> list) {
-        super.delete(roleId);
+        super.batchDelete(Arrays.asList(roleId));
         super.batchSave(list);
         // JMS通知权限变更
         permissionJmsService.send(appService.findById(roleService.findById(roleId).getAppId()).getCode());
