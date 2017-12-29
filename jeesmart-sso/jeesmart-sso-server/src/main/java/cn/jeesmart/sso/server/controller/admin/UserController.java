@@ -134,23 +134,27 @@ public class UserController extends BaseController {
 			@ApiParam(value = "登录名", required = true) @ValidateParam({ Validator.NOT_BLANK }) String account,
 			@ApiParam(value = "密码 ") String password,
 			@ApiParam(value = "是否启用", required = true) @ValidateParam({ Validator.NOT_BLANK }) Boolean isEnable) {
-		User user;
-		if (id == null) {
+
+		User user = new User();
+		user.setIsEnable(isEnable);
+		user.setAccount(account);
+		if(StringHelper.isBlank(id)){
 			if (StringHelper.isBlank(password)) {
 				throw new SystemException("密码不能为空");
 			}
-			user = new User();
-			user.setCreateTime(new Date());
+			else{
+				user.setPassword(PasswordProvider.encrypt(password));
+			}
+			user.preInsert();
+			userService.save(user);
+		}else{
+			user.setId(id);
+			user.preUpdate();
+			if (StringHelper.isNotBlank(password)) {
+				user.setPassword(PasswordProvider.encrypt(password));
+			}
+			userService.update(user);
 		}
-		else {
-			user = userService.findById(id);
-		}
-		user.setAccount(account);
-		if (StringHelper.isNotBlank(password)) {
-			user.setPassword(PasswordProvider.encrypt(password));
-		}
-		user.setIsEnable(isEnable);
-		userService.save(user);
 		return makeErrorMessage(ReturnCode.SUCCESS,"保存成功","保存成功");
 	}
 

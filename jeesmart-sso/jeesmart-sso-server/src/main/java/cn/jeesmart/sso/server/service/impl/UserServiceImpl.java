@@ -72,8 +72,11 @@ public class UserServiceImpl extends AbstractBaseDao<User, String> implements Us
     @Override
     @Transactional
     public void deleteById(List<String> idList) {
-        userAppService.batchDelete(idList);
-        userRoleService.batchDelete(idList);
+        String operate = ".deleteByUserIds";
+        Map<String,Object> param = new HashMap<>();
+        param.put("idList",idList);
+        userAppService.delete(param,operate);
+        userRoleService.delete(param,operate);
         super.batchDelete(idList);
     }
 }
