@@ -57,7 +57,25 @@
 			AND a.appId = #{appId} 
 		</if>
      	ORDER BY a.sort DESC
-		limit #{pageNo},#{pageSize}
+		<if test="pageNo != null and pageNo != ''and pageSize !=null and pageSize != ''">
+			limit #{pageNo},#{pageSize}
+		</if>
+	</select>
+
+	<select id="findByAppId" parameterType="map" resultType="cn.jeesmart.sso.server.model.Role">
+		SELECT *
+		FROM SYS_ROLE a
+		WHERE 1 = 1
+		<if test="name != null and name != '' ">
+			AND a.name like CONCAT('%',#{name},'%')
+		</if>
+		<if test="isEnable != null">
+			AND a.isEnable = #{isEnable}
+		</if>
+		<if test="appId != null and appId != '' ">
+			AND a.appId = #{appId}
+		</if>
+		ORDER BY a.sort DESC
 	</select>
 
 	<!-- 总数 -->

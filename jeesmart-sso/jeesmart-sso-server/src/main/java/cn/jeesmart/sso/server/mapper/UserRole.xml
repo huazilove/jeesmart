@@ -26,6 +26,23 @@
 		)
 	</insert>
 
+	<!--新增-->
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into SYS_RE_USER_ROLE (
+			appId,
+			userId,
+			roleId
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator="," >
+			(
+			#{item.appId},
+			#{item.userId},
+			#{item.roleId}
+			)
+		</foreach>
+	</insert>
+
 	<delete id="deleteByRoleIds" parameterType="map" statementType="PREPARED">
 		DELETE FROM SYS_RE_USER_ROLE
 		WHERE 1 = 1

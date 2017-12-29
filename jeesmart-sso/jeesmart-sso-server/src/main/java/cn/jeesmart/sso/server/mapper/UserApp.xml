@@ -39,4 +39,19 @@
 			AND appId in <foreach collection="idList" item="item" open="(" separator="," close=")">#{item}</foreach>
 		</if>
 	</delete>
+
+	<!--新增-->
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into SYS_RE_USER_APP (
+		   appId,
+		   userId
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator="," >
+		   (
+			#{item.appId},
+			#{item.userId}
+			)
+		</foreach>
+	</insert>
 </mapper>

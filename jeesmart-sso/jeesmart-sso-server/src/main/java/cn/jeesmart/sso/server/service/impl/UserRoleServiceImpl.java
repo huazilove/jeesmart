@@ -18,7 +18,7 @@ public class UserRoleServiceImpl extends AbstractBaseDao<UserRole, String> imple
     @Override
     @Transactional
     public void allocate(String userId, String appId, List<UserRole> list) {
-        String operate ="deleteByUserIds";
+        String operate =".deleteByUserIds";
         Map<String,Object> param = new HashMap<>();
         param.put("appId",appId);
         param.put("userId",Arrays.asList(userId));

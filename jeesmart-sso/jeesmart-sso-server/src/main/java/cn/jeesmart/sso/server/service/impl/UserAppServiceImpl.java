@@ -29,7 +29,9 @@ public class UserAppServiceImpl extends AbstractBaseDao<UserApp, String> impleme
         map.put("userId",userId);
         map.put("idList",idList);
         userRoleService.delete(map,operate);
-        super.delete(userId);
+        operate = ".deleteByUserIds";
+        map.put("idList",Arrays.asList(userId));
+        super.delete(map,operate);
         super.batchSave(list);
     }
 }
