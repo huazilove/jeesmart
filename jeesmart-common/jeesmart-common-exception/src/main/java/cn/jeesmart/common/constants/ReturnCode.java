@@ -10,12 +10,12 @@ public final class ReturnCode {
     /**
      * 成功
      */
-    public static final String SUCCESS = "0";
+    public static final String SUCCESS = "1";
 
     /**
      * 失败
      */
-    public static final String ERROR = "1";
+    public static final String ERROR = "0";
 
 
     /**

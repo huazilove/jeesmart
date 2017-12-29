@@ -68,7 +68,7 @@ public class AppController extends BaseController{
 	@RequestMapping(value = "/validateCode", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> validateCode(
-			@ApiParam(value = "id") @RequestParam("id")Integer id,
+			@ApiParam(value = "id") @RequestParam("id")String id,
 			@ApiParam(value = "应用编码", required = true) @RequestParam("code") String code) {
 		/**
 		 * 跟sql语句ID对应
@@ -77,7 +77,7 @@ public class AppController extends BaseController{
 		Map<String,Object> param = new HashMap<>();
 		param.put("code",code);
 		App db = appService.findByParam(param,operate);
-		if (null != db && !db.getId().equals(id)) {
+		if (null != db && !id.equals(db.getId())) {
 			return makeErrorMessage(ReturnCode.ERROR,"应用编码已存在","应用编码已存在");
 		}
 		return makeErrorMessage(ReturnCode.SUCCESS,"成功","成功");

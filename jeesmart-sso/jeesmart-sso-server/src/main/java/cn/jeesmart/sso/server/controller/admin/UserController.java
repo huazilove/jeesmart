@@ -140,7 +140,7 @@ public class UserController extends BaseController {
 				throw new SystemException("密码不能为空");
 			}
 			user = new User();
-			user.setCreateDate(new Date());
+			user.setCreateTime(new Date());
 		}
 		else {
 			user = userService.findById(id);

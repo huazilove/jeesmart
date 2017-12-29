@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -31,11 +33,14 @@ public class AppServiceImpl extends AbstractBaseDao<App, String> implements AppS
     @Override
     @Transactional
     public void deleteById(List<String> idList) {
-        rolePermissionService.batchDelete(idList);
-        userRoleService.batchDelete(idList);
-        userAppService.batchDelete(idList);
-        permissionService.batchDelete(idList);
-        roleService.batchDelete(idList);
+        String operate = ".deleteByAppIds";
+        Map<String,Object> param = new HashMap<>();
+        param.put("idList",idList);
+        rolePermissionService.delete(param,operate);
+        userRoleService.delete(param,operate);
+        userAppService.delete(param,operate);
+        permissionService.delete(param,operate);
+        roleService.delete(param,operate);
         batchDelete(idList);
     }
 }

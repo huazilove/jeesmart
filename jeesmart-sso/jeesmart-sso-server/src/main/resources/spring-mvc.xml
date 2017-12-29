@@ -13,10 +13,16 @@
 	<context:component-scan base-package="cn.jeesmart.sso.server.controller" />
 	<!-- 自定义Json解析器 -->
 	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean class="cn.jeesmart.common.exception.MethodArgumentResovler" />
+		</mvc:argument-resolvers>
 		<mvc:message-converters>
 			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+
+	<!-- 自定义异常处理 -->
+	<bean id="exceptionResolver" class="cn.jeesmart.common.exception.ExceptionResolver" />
 
 	<!-- 视图解析器 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

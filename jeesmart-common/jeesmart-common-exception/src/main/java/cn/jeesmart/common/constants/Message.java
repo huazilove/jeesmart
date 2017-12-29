@@ -20,11 +20,11 @@ public final class Message {
     /**
      * 错误信息
      */
-    public static final String RETURN_FIELD_ERROR = "error";
+    public static final String RETURN_FIELD_ERROR = "message";
     /**
      * 错误描述
      */
-    public static final String RETURN_FIELD_ERROR_DESC = "error_description";
+    public static final String RETURN_FIELD_ERROR_DESC = "error_desc";
     /**
      * 返回数据
      */
