@@ -21,7 +21,7 @@ public class UserRoleServiceImpl extends AbstractBaseDao<UserRole, String> imple
         String operate =".deleteByUserIds";
         Map<String,Object> param = new HashMap<>();
         param.put("appId",appId);
-        param.put("userId",Arrays.asList(userId));
+        param.put("idList",Arrays.asList(userId));
         super.delete(param,operate);
         super.batchSave(list);
     }
