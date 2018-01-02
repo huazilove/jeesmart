@@ -14,6 +14,23 @@
 		)
 	</insert>
 
+	<!--新增-->
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into SYS_RE_ROLE_PERMISSION (
+			appId,
+			roleId,
+			permissionId
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator="," >
+			(
+			#{item.appId},
+			#{item.roleId},
+			#{item.permissionId}
+			)
+		</foreach>
+	</insert>
+
 	<select id="findByRoleId" parameterType="map" resultType="cn.jeesmart.sso.server.model.RolePermission">
 		SELECT a.* 
      	FROM SYS_RE_ROLE_PERMISSION a
@@ -32,11 +49,11 @@
 		</if>
 	</delete>
 	
-	<delete id="batchDelete" parameterType="map" statementType="PREPARED">
+	<delete id="deleteByRoleIds" parameterType="map" statementType="PREPARED">
 		DELETE FROM SYS_RE_ROLE_PERMISSION
 		WHERE 1 = 1
-		<if test="list != null">
-			AND roleId in <foreach collection="list" item="item" open="(" separator="," close=")">#{item}</foreach>
+		<if test="idList != null">
+			AND roleId in <foreach collection="idList" item="item" open="(" separator="," close=")">#{item}</foreach>
 		</if>
 	</delete>
 	

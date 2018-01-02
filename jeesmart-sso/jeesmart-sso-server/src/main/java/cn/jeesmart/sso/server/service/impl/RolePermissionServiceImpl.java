@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Joe
@@ -27,9 +29,12 @@ public class RolePermissionServiceImpl extends AbstractBaseDao<RolePermission, S
     @Override
     @Transactional
     public void allocate(String roleId, List<RolePermission> list) {
-        super.batchDelete(Arrays.asList(roleId));
+        String operate = ".deleteByRoleIds";
+        Map<String,Object> map = new HashMap<>();
+        map.put("idList",Arrays.asList(roleId));
+        super.delete(map,operate);
         super.batchSave(list);
-        // JMS通知权限变更
+        // JMS通知权限变更9
         permissionJmsService.send(appService.findById(roleService.findById(roleId).getAppId()).getCode());
     }
 }
