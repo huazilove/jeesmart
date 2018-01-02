@@ -196,16 +196,6 @@
             <artifactId>fastjson</artifactId>
         </dependency>
 
-        <!-- Jstl支持-->
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-        </dependency>
-
         <!-- Quartz定时任务 -->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
